@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment-test
+  labels:
+    app: test-a
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pod-testa
+  template:
+    metadata:
+      labels:
+        app: pod-testa
+    spec:
+      containers:
+      - name: mycentos
+        image: centos:7

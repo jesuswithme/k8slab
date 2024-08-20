@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata: 
+  name: pod-liveness
+spec: 
+  containers: 
+  - image: jesuswithme/unhealthy
+    name: unhealthy-con
+    ports: 
+    - containerPort: 8080
+      protocol: TCP
+    livenessProbe: 
+      httpGet: 
+        path: /
+        port: 8080
+

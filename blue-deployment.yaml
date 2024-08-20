@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: blue-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: mainweb
+      ver: stable
+  template:
+    metadata:
+      labels:
+        app: mainweb
+        ver: stable
+    spec:
+      containers:
+      - name: myweb-con1
+        image: nginx:1.14
+        ports:
+        - containerPort: 80

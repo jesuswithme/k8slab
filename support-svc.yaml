@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-support
+  labels:
+    category: support
+spec:
+  containers:
+  - name: container
+    image: jesuswithme/messtige-support
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: support-svc
+spec:
+  selector:
+    category: support
+  ports:
+  - port: 80

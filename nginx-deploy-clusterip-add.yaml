@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deploy-add
+  labels:
+    app: nginx-app-add
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: nginx-app-add
+  template:
+    metadata:
+      labels:
+        app: nginx-app-add
+    spec:
+      containers:
+      - name: nginx-app-add
+        image: nginx
+        ports:
+        - containerPort: 80
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: clusterip-nginx-add
+spec:
+  type: ClusterIP
+  clusterIP: 10.96.100.100
+  selector:
+    app: nginx-app-add
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80

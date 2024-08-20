@@ -1,0 +1,15 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: centos-job
+spec:
+  template:
+    spec:
+      containers:
+      - name: centos-con
+        image: centos:7
+        command: ["bash"]
+        args: 
+        - "-c"
+        - "echo 'Shalom'; sleep 60; echo 'God bless you'"
+      restartPolicy: Never

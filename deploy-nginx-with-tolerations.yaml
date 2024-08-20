@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myweb
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: myweb
+  template:
+    metadata:
+      name: nginx-pod
+      labels:
+        app: myweb
+    spec:
+      containers:
+      - name: nginx-container
+        image: nginx:1.14
+      tolerations:
+      - key: "role"
+        operator: "Equal"
+        value: "web"
+        effect: "NoSchedule"

@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: mydeploy
+  name: mydeploy
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: mydeploy
+  template:
+    metadata:
+      labels:
+        app: mydeploy
+    spec:
+      nodeSelector:
+        gpu: "true"
+      containers:
+      - name: tensorflow
+        image: tensorflow/tensorflow:nightly-jupyter
+        ports:
+        - containerPort: 8888
+          protocol: TCP
+      
+
